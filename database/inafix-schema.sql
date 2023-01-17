@@ -90,7 +90,7 @@ CREATE TABLE Magazyn(
 	ilosc INT UNSIGNED NOT NULL,
 	PRIMARY KEY(id),
 	FOREIGN KEY(id_produktu) REFERENCES Produkty(id),
-	CONSTRAINT ujemna_liczba_towaru CHECK(ilosc > 0)
+	CONSTRAINT ujemna_liczba_towaru CHECK(ilosc >= 0)
 );
 
 DROP TABLE IF EXISTS Sklep;
@@ -103,7 +103,7 @@ CREATE TABLE Sklep(
 	PRIMARY KEY(id),
 	FOREIGN KEY(id_produktu) REFERENCES Produkty(id),
 	FOREIGN KEY(id_dzialu) REFERENCES Dzial(id),
-	CONSTRAINT ujemna_liczba_towaru CHECK(ilosc > 0)
+	CONSTRAINT ujemna_liczba_towaru CHECK(ilosc >= 0)
 );
 
 DROP TABLE IF EXISTS Harmonogram;
