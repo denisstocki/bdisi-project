@@ -118,7 +118,12 @@ public class DirectorController extends WorkerController{
     }
 
     private void printDirectorData6() {
-
+        try {
+            statement = connection.prepareStatement(DirectorStatements.director6);
+            printer.printDirectorData6(statement.executeQuery());
+        } catch (SQLException e) {
+            printer.printErrorQuery();
+        }
     }
 
     private void printDirectorData7() {

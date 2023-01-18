@@ -81,4 +81,18 @@ public class DirectorPrinter extends WorkerPrinter{
             printSuccessfulQuery();
         }
     }
+
+    public void printDirectorData6(ResultSet resultSet) {
+        System.out.println("Liczba klientow kupujacych w Inafix:");
+
+        try {
+            while(resultSet.next()){
+                System.out.println(resultSet.getInt(1));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println();
+    }
 }
