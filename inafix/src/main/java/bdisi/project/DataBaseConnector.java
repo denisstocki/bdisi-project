@@ -9,7 +9,7 @@ import java.sql.*;
 public class DataBaseConnector {
 
     public static void main( String[] args ) {
-        final String url = "jdbc:mysql://localhost:3306/Ziemia";
+        final String url = "jdbc:mysql://localhost:3306/Inafix";
 
         final String username = "root";
 
@@ -22,10 +22,10 @@ public class DataBaseConnector {
 
             Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("select id_czlowieka, imie from Ludzie order by id_czlowieka");
+            ResultSet resultSet = statement.executeQuery("select * from Dzial;");
 
             while(resultSet.next()){
-                System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2));
+                System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getDouble(3));
             }
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
