@@ -21,7 +21,7 @@ public class DefaultPrinter {
      * Method welcomeTheUser - simply welcomes the user
      */
     public void welcomeTheUser() {
-        String msg = "Witaj niezalogowany uzytkowniku !\n";
+        String msg = "Witaj kliencie !\n";
 
         printSystemMessage(msg);
     }
@@ -49,7 +49,7 @@ public class DefaultPrinter {
      * Method printErrorQuery - prints an error when query failed
      */
     public void printErrorQuery() {
-        String msg = "Prepared query is wrongly prepared ! Needs to be fixed ...\n";
+        String msg = "Prepared kwerenda zostala zle napisana ! Administrator systemu musi ja naprawic ...\n";
 
         printSystemMessage(msg);
     }

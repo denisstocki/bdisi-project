@@ -32,11 +32,6 @@ public class DefaultUser implements Userable{
     public void run() {
 
         /**
-         * Simply welcomes the user
-         */
-        controller.welcomeTheUser();
-
-        /**
          * Sets up the drivers
          */
         controller.setUpDrivers();
@@ -45,6 +40,11 @@ public class DefaultUser implements Userable{
          * Connects to DB
          */
         controller.connectToDB();
+
+        /**
+         * Simply welcomes the user
+         */
+        controller.welcomeTheUser();
 
         /**
          * Asks the user what does he want to do

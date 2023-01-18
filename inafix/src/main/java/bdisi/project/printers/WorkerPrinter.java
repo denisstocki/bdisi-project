@@ -1,5 +1,8 @@
 package bdisi.project.printers;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class WorkerPrinter extends DefaultPrinter{
 
     @Override
@@ -27,7 +30,7 @@ public class WorkerPrinter extends DefaultPrinter{
      * Simply asks user to pass a login
      */
     public void askForLogin() {
-        System.out.println("\nProsze podaj swoj login pracowniczy:");
+        System.out.println("Prosze podaj swoj login pracowniczy:");
     }
 
     /**
@@ -48,6 +51,115 @@ public class WorkerPrinter extends DefaultPrinter{
      * Method printWrongLogin - simply shows that login or password were incorrect
      */
     public void printWrongLogin() {
-        System.out.println("\nProces logowania nie powiodl sie. Niepoprawny login lub haslo ...\n");
+        System.out.println("Proces logowania nie powiodl sie. Niepoprawny login lub haslo ...\n");
+    }
+
+    /**
+     * Method printWorkerData1 - simply shows the result of worker1 statement query
+     * @param resultSet
+     */
+    public void printWorkerData1(ResultSet resultSet) {
+        System.out.println("\nWyswietlam informacje odnosnie wskazanego przez Ciebie produktu:");
+
+        try {
+            while(resultSet.next()){
+                System.out.println("Id: " + resultSet.getInt(1) + "\n" +
+                        "nazwa: " + resultSet.getString(2) + "\n" +
+                        "opis: " + resultSet.getString(3) + "\n" +
+                        "cena: " + resultSet.getDouble(4) + "\n" +
+                        "producent: " + resultSet.getString(5) + "\n" +
+                        "kod_kreskowy: " + resultSet.getInt(6));
+            }
+        } catch (SQLException e) {
+            printErrorQuery();
+        }
+
+        System.out.println();
+    }
+
+    public void printWorkerData4(ResultSet resultSet) {
+        System.out.println("\nWyswietlam ilosc kazdego z produktow na sklepie:");
+        printWorkerData45(resultSet);
+    }
+
+    /**
+     * Method printWorkerData5 - simply writes down the quantity of all products in the magazine
+     * @param resultSet
+     */
+    public void printWorkerData5(ResultSet resultSet) {
+        System.out.println("\nWyswietlam ilosc kazdego z produktow na magazynie:");
+        printWorkerData45(resultSet);
+    }
+
+    /**
+     * Method printWorkerData45 - is used as a shared method between worker4 and worker5
+     * @param resultSet
+     */
+    private void printWorkerData45(ResultSet resultSet) {
+        int counter = 0;
+
+        try {
+            while(resultSet.next()){
+                System.out.println(++counter + ": " + resultSet.getString(1) + " - " + resultSet.getInt(2) + " szt.");
+            }
+        } catch (SQLException e) {
+            printErrorQuery();
+        }
+
+        System.out.println();
+    }
+
+    /**
+     * Method printWorkerData6 - is used to show in which district is the product located
+     * @param resultSet
+     */
+    public void printWorkerData6(ResultSet resultSet) {
+        int counter = 0;
+
+        try {
+            while(resultSet.next()){
+                System.out.println(++counter + ": " + resultSet.getString(1));
+            }
+        } catch (SQLException e) {
+            printErrorQuery();
+        }
+
+        System.out.println();
+    }
+
+    /**
+     * Method printWorkerData6 - is used to show quantity of a given product name in the shop
+     * @param resultSet
+     */
+    public void printWorkerData8(ResultSet resultSet) {
+        try {
+            while(resultSet.next()){
+                System.out.println("Nazwa: " + resultSet.getString(1) + ", ilosc = " + resultSet.getInt(2));
+            }
+        } catch (SQLException e) {
+            printErrorQuery();
+        }
+
+        System.out.println();
+    }
+
+    /**
+     * Method printWorkerData6 - is used to show quantity of a given product name in the magazine
+     * @param resultSet
+     */
+    public void printWorkerData9(ResultSet resultSet) {
+        try {
+            if(!resultSet.next()){
+                System.out.println("\nBrak pasujacych danych ...");
+            } else {
+                while(resultSet.next()){
+                    System.out.println("Nazwa: " + resultSet.getString(1) + ", ilosc = " + resultSet.getInt(2));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println();
     }
 }

@@ -24,24 +24,17 @@ public class WorkerUser implements Userable{
 
     @Override
     public void run() {
-        /**
-         * Simply welcomes the user
-         */
-        controller.welcomeTheUser();
 
         /**
          * Sets up the drivers
          */
         controller.setUpDrivers();
 
+        System.out.println();
+
         /**
          * Lets the user try to log into account
          */
         controller.logTheUser();
-
-        /**
-         * Asks the user what does he want to do
-         */
-        controller.talkWithTheUser();
     }
 }
